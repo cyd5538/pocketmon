@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import DetailpageListStats from "./DetailpageListStats";
 
+
 const DetailpageListStyle = styled.div`
   width: 100%;
   padding-top: 3rem;

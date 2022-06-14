@@ -77,7 +77,7 @@ const Pocketlogo = styled.span`
   position: absolute;
   right: 15px;
   bottom: 20px;
-  border: 1px solid #000;
+  border: 1px solid #000; 
   padding: 2px 10px;
   border-radius: 15px;
   color: black;
