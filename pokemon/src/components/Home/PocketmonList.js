@@ -10,11 +10,31 @@ const PocketmonListStyle = styled.div`
   border: 1px solid #000;
   padding: 10px;
   position: relative;
-  filter: drop-shadow(-3px 0px 7px #000);
+  box-shadow: 0px 0px 8px 1px rgba(128, 0, 0, 0.5);
+  /* filter: drop-shadow(-3px 0px 7px #000); */
+  .absolute{
+    position: absolute;
+    bottom: 22px;
+    left: 20px;
+    button{
+      width: 25px;
+      height: 25px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 12px;
+      background-color : purple;
+      color: white;
+      cursor: pointer;
+      transition: all ease-in 0.3s;
+    }
+    button:hover{
+      transform: scale(1.1);
+    }
+  }
+
   .image {
     display: flex;
     width: 100%;
-
     justify-content: center;
   }
   img {
@@ -48,7 +68,7 @@ const Idname = styled.div`
     position: relative;
     left: -11px;
     border-radius: 15px;
-    background-color: ${props => props.theme.main};
+    background-color: ${(props) => props.theme.main};
     color: black;
     font-weight: bold;
   }
@@ -60,16 +80,16 @@ const Idname = styled.div`
   @media screen and (max-width: 989px) {
     .span {
       margin-right: 0;
-    padding: 2px 10px 2px 5px;
-  }
-    .span span:first-child{
+      padding: 2px 10px 2px 5px;
+    }
+    .span span:first-child {
       font-size: 0.8rem;
-      padding : 4px 8px;
+      padding: 4px 8px;
       top: -1px;
     }
     .span span:last-child {
       font-size: 0.8rem;
-  }
+    }
   }
 `;
 
@@ -77,44 +97,56 @@ const Pocketlogo = styled.span`
   position: absolute;
   right: 15px;
   bottom: 20px;
-  border: 1px solid #000; 
+  border: 1px solid #000;
   padding: 2px 10px;
   border-radius: 15px;
   color: black;
   @media screen and (max-width: 989px) {
-    padding : 2px 4px;
+    padding: 2px 4px;
     font-size: 0.8rem;
     right: 5px;
   }
 `;
 
-const PocketmonList = ({ data }) => {
-  
-  const color = ["f00","ff8c00", "ff0", "008000", "0000ff","0000ff","4b0082","800080"]
+const PocketmonList = ({ data, handleClick }) => {
+  const color = [
+    "f00",
+    "ff8c00",
+    "ff0",
+    "008000",
+    "0000ff",
+    "0000ff",
+    "4b0082",
+    "800080",
+  ];
 
-  const getRandomColor = function(length){
-    return parseInt(Math.random() * color.length)
-  }
+  const getRandomColor = function (length) {
+    return parseInt(Math.random() * color.length);
+  };
   const theme = {
-    main: `#${color[getRandomColor()]}`
+    main: `#${color[getRandomColor()]}`,
   };
   return (
     <>
-      <PocketmonListStyle >
+      <PocketmonListStyle>
+        <Idname theme={theme}>
+          <span className="span">
+            <span>{data.id}</span>
+            <span>{data.name}</span>
+          </span>
+      
+        </Idname>
         <Link to={`/${data.name}`}>
-          <Idname theme={theme}>
-            <span className="span">
-              <span>{data.id}</span>
-              <span>{data.name}</span>
-            </span>
-          </Idname>
           <div className="image">
             <img src={data.sprites.other.dream_world.front_default} alt="" />
           </div>
-          <Pocketlogo>
-            <SiPocketcasts /> Pokemon
-          </Pocketlogo>
         </Link>
+        <Pocketlogo>
+          <SiPocketcasts /> Pokemon
+        </Pocketlogo>
+        <div className="absolute">
+          <button onClick={() => handleClick(data)}>+</button>
+        </div>
       </PocketmonListStyle>
     </>
   );

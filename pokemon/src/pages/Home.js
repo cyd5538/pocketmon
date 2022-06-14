@@ -1,25 +1,24 @@
-import React, { useState } from "react";
-import Header from "../components/Header";
-import PocketList from "../components/Pocketmon";
-import Search from "../components/Search";
+import React  from "react";
+import Header from "../components/Home/Header";
+import Pocketmon from "../components/Home/Pocketmon";
+import Search from "../components/Home/Search";
 
-
-const Home = () => {
-  const [pokemonSearch, setPokemonSearch] = useState("");
-  const [pokemon, setPokemon] = useState([]);
-
+const Home = ({
+  setPokemonSearch,
+  pokemon,
+  setPokemon,
+  pokemonSearch,
+  handleClick
+}) => {
   return (
     <div>
       <Header />
-      <Search
-        pokemonSearch={pokemonSearch}
-        setPokemonSearch={setPokemonSearch}
-      />
-      <PocketList
+      <Search setPokemonSearch={setPokemonSearch} />
+      <Pocketmon
         pokemon={pokemon}
         setPokemon={setPokemon}
-        setPokemonSearch={setPokemonSearch}
         pokemonSearch={pokemonSearch}
+        handleClick={handleClick}
       />
     </div>
   );

@@ -61,6 +61,7 @@ const MenuStyle = styled.div`
 
 const SideBar = () => {
   const [open, setOpen] = useState(false);
+
   return (
     <SdiebarStyle open={!open}>
       <div className="arrow">

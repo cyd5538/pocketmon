@@ -1,7 +1,9 @@
 import React, {useEffect,useState} from 'react'
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import DetailpageList from '../components/DetailpageList';
+import DetailpageList from '../components/Detail/DetailpageList';
+
+
 
 const Detailpage = () => {
   const [pocket, setPocket] = useState();
@@ -20,9 +22,9 @@ const Detailpage = () => {
   }, []);
 
   return (
-    <div>
+    <>
       <DetailpageList pocket={pocket} />
-    </div>
+    </>
   )
 }
 

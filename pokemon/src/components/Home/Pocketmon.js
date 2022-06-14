@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PocketmonList from "./PocketmonList";
 import styled from "styled-components";
-import {Spinner} from "../styles/Loading";
+import {Spinner} from "./Loading";
 import HomeButton from "./HomeButton";
 
 
@@ -15,7 +15,7 @@ const PocketmonStyle = styled.div`
     row-gap: 20px;
 `;
 
-const Pocketmon = ({pokemon, setPokemon, pokemonSearch}) => {
+const Pocketmon = ({pokemon, setPokemon, pokemonSearch,handleClick}) => {
   
   const [loading, setLoading] = useState(true);
   const [limit,setLimit] = useState(24);
@@ -60,7 +60,7 @@ const Pocketmon = ({pokemon, setPokemon, pokemonSearch}) => {
             return index;
           }
         }).map((a) => (
-            <PocketmonList key={a.data.id} data={a.data} loadMore={loadMore} />
+            <PocketmonList key={a.data.id} data={a.data} loadMore={loadMore} handleClick={handleClick} />
           ))}
         </PocketmonStyle>
         <HomeButton loadMore={loadMore} />

@@ -1,6 +1,6 @@
 import React from "react";
-import Logo from "../assets/Logoo.png";
-import ball from "../assets/ball.png";
+import Logo from "./assets/Logoo.png";
+import ball from "./assets/ball.png";
 import styled from "styled-components";
 
 const HeaderStyled = styled.div`

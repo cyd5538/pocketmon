@@ -41,7 +41,7 @@ const SearchStyle = styled.form`
   }
 `;
 
-const Search = ({setPokemonSearch, pokemonSearch}) => {
+const Search = ({setPokemonSearch}) => {
   
 
   const handleSubmit = (e) => {

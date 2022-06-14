@@ -1,21 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import DetailpageListStats from "./DetailpageListStats";
 
 
 const DetailpageListStyle = styled.div`
   width: 100%;
+  margin-top: 100px;
   padding-top: 3rem;
-  background: rgb(103, 133, 221);
-  background: linear-gradient(
-    47deg,
-    rgba(103, 133, 221, 1) 18%,
-    rgba(106, 113, 195, 1) 32%,
-    rgba(113, 121, 207, 1) 53%,
-    rgba(52, 59, 234, 1) 76%,
-    rgba(103, 42, 210, 1) 91%
-  );
+  background-color: black;
   padding-left: 1rem;
   padding-right: 1rem;
   font-size: 1.5rem;
@@ -66,14 +58,9 @@ const Title = styled.div`
     color: #fff;
     text-shadow: 8px 5px 10px #ffffff;
   }
-  div:last-child {
-    margin-left: 50px;
-    font-size: 3rem;
-  }
+
   @media screen and (max-width: 580px) {
-    div:first-child {
-      font-size: 2rem;
-    }
+
   }
 `;
 
@@ -115,7 +102,7 @@ const Stats = styled.div`
 `;
 
 const DetailpageList = ({ pocket }) => {
-  const [toggle, setToggle] = useState(false);
+
   const [color, setColor] = useState("");
 
   const typeColor = () => {
@@ -185,13 +172,6 @@ const DetailpageList = ({ pocket }) => {
       <div className="right">
         <Title>
           <div>{pocket?.name}</div>
-          <div>
-            {toggle ? (
-              <AiFillStar onClick={() => setToggle(!toggle)} />
-            ) : (
-              <AiOutlineStar onClick={() => setToggle(!toggle)} />
-            )}
-          </div>
         </Title>
         <HeightWeight>
           <div>
