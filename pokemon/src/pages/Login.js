@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { signup, login, useAuth } from "../firebase";
+import { signup, login } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import { BsGithub } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
@@ -131,9 +131,8 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   let navigate = useNavigate();
-  const currentUser = useAuth();
   const auth = getAuth();
-  const user = auth.currentUser;
+
 
   const provider = new GoogleAuthProvider();
   const github = new GithubAuthProvider();
