@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { SiPocketcasts } from "react-icons/si";
 import { Link } from "react-router-dom";
-
+import Sidebar from "../components/SideBar";
 
 const Tung = styled.div`
-  .tung{
+  .tung {
     font-size: 2rem;
     text-align: center;
-    margin-top : 150px;
+    margin-top: 150px;
     font-weight: bold;
-    color: #121FCF;
+    color: #121fcf;
   }
-`
+`;
 
 const Display = styled.div`
   padding: 1rem;
@@ -23,7 +23,6 @@ const Display = styled.div`
   row-gap: 20px;
   flex-wrap: wrap;
   justify-content: center;
-  
 `;
 
 const PocketmonListStyle = styled.div`
@@ -127,48 +126,58 @@ const Pocketlogo = styled.span`
 `;
 
 const Bookmark = ({ cart, setCart }) => {
-  const set = new Set(cart);
-  const [uniqueArr, setUniqueArr] = useState([...set]);
-  console.log(uniqueArr);
   const handelDelete = (id) => {
-    const arr = uniqueArr.filter((item) => item.id !== id);
+    const arr = cart.filter((item) => item.id !== id);
     setCart(arr);
-    setUniqueArr(arr);
   };
 
+  // 카트 중복제거
+  const cartArray = cart.filter((item, i) => {
+    return (
+      cart.findIndex((item2, j) => {
+        return item.id === item2.id;
+      }) === i
+    );
+  });
+
+  console.log(cartArray);
   return (
-    <Tung>
-      {uniqueArr.length === 0 ? (
-        <div className="tung">즐겨찾기가 비어있습니다</div>
-      ) : (
-        <Display>
-          {uniqueArr.map((a) => (
-            <>
-              <PocketmonListStyle>
-                <Idname>
-                  <span className="span">
-                    <span>{a.id}</span>
-                    <span>{a.name}</span>
-                  </span>
-                  <button onClick={() => handelDelete(a.id)}>X</button>
-                </Idname>
-                <Link to={`/${a.name}`}>
-                  <div className="image">
-                    <img
-                      src={a.sprites.other.dream_world.front_default}
-                      alt=""
-                    />
-                  </div>
-                </Link>
-                <Pocketlogo>
-                  <SiPocketcasts /> Pokemon
-                </Pocketlogo>
-              </PocketmonListStyle>
-            </>
-          ))}
-        </Display>
-      )}
-    </Tung>
+    <>
+      <Sidebar />
+
+      <Tung>
+        {cart.length === 0 ? (
+          <div className="tung">즐겨찾기가 비어있습니다</div>
+        ) : (
+          <Display>
+            {cartArray.map((a) => (
+              <>
+                <PocketmonListStyle>
+                  <Idname>
+                    <span className="span">
+                      <span>{a.id}</span>
+                      <span>{a.name}</span>
+                    </span>
+                    <button onClick={() => handelDelete(a.id)}>X</button>
+                  </Idname>
+                  <Link to={`/${a.name}`}>
+                    <div className="image">
+                      <img
+                        src={a.sprites.other.dream_world.front_default}
+                        alt=""
+                      />
+                    </div>
+                  </Link>
+                  <Pocketlogo>
+                    <SiPocketcasts /> Pokemon
+                  </Pocketlogo>
+                </PocketmonListStyle>
+              </>
+            ))}
+          </Display>
+        )}
+      </Tung>
+    </>
   );
 };
 

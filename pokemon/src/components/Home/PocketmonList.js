@@ -4,6 +4,7 @@ import { SiPocketcasts } from "react-icons/si";
 import { Link } from "react-router-dom";
 
 const PocketmonListStyle = styled.div`
+
   width: 250px;
   height: 300px;
   border-radius: 30px;

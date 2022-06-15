@@ -2,7 +2,7 @@ import React  from "react";
 import Header from "../components/Home/Header";
 import Pocketmon from "../components/Home/Pocketmon";
 import Search from "../components/Home/Search";
-
+import Sidebar from '../components/SideBar'
 const Home = ({
   setPokemonSearch,
   pokemon,
@@ -12,6 +12,7 @@ const Home = ({
 }) => {
   return (
     <div>
+      <Sidebar />
       <Header />
       <Search setPokemonSearch={setPokemonSearch} />
       <Pocketmon

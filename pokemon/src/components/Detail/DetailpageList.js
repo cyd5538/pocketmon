@@ -5,9 +5,9 @@ import DetailpageListStats from "./DetailpageListStats";
 
 const DetailpageListStyle = styled.div`
   width: 100%;
-  margin-top: 100px;
-  padding-top: 3rem;
-  background-color: black;
+  padding-top : 3rem;
+  height: 100vh;
+  background-color: gray;
   padding-left: 1rem;
   padding-right: 1rem;
   font-size: 1.5rem;
@@ -26,6 +26,7 @@ const DetailpageListStyle = styled.div`
   }
   @media screen and (max-width: 580px) {
     padding: 1rem;
+    height: auto;
     img {
       max-width: 200px;
       width: 100%;
@@ -37,6 +38,7 @@ const DetailpageListStyle = styled.div`
   }
   @media screen and (max-width: 480px) {
     padding: 1rem;
+    height: auto;
     img {
       max-width: 200px;
       width: 100%;
@@ -168,7 +170,7 @@ const DetailpageList = ({ pocket }) => {
 
   return (
     <DetailpageListStyle>
-      <img src={pocket?.sprites.other.home.front_default} alt={pocket?.name} />
+      <div><img src={pocket?.sprites.other.home.front_default} alt={pocket?.name} /></div>
       <div className="right">
         <Title>
           <div>{pocket?.name}</div>

@@ -3,9 +3,9 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import GlobalStyle from "./styles/GlobalStyle";
 import Detailpage from "./pages/Detailpage";
-import SideBar from "./components/SideBar";
 import Profile from "./pages/Profile";
 import Bookmark from "./pages/Bookmark";
+import Login from "./pages/Login";
 
 function App() {
   const [pokemonSearch, setPokemonSearch] = useState("");
@@ -20,10 +20,9 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <SideBar  cart={cart} />
       <Routes>
         <Route
-          path="/"
+          path="/home"
           element={
             <Home
               pokemonSearch={pokemonSearch}
@@ -37,6 +36,7 @@ function App() {
         <Route path="/:id" element={<Detailpage />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/bookmark" element={<Bookmark cart={cart} setCart={setCart} />} />
+        <Route path="/" element={<Login />} />
       </Routes>
     </>
   );

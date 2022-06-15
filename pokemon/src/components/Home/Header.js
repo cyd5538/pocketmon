@@ -67,9 +67,9 @@ const HeaderStyled = styled.div`
 const Header = () => {
   return (
     <HeaderStyled>
-      <img class="ball bounce" src={ball} alt={ball} />
+      <img className="ball bounce" src={ball} alt={ball} />
       <img id="logo" src={Logo} alt={Logo} />
-      <img class="ball bounce" src={ball} alt={ball} />
+      <img className="ball bounce" src={ball} alt={ball} />
     </HeaderStyled>
   );
 };

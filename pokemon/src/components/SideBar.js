@@ -73,7 +73,7 @@ const SideBar = () => {
       </div>
       <MenuStyle>
         <div>
-          <Link to="/">
+          <Link to="/home">
             <span>Home</span>
             <span>
               <AiFillHome />
