@@ -8,6 +8,7 @@ const GlobalStyle = createGlobalStyle`
   }
   body{
     width: 100%;
+    background-color: ${(props) => props.theme.bodyColor};
   }
   a{
     text-decoration: none;

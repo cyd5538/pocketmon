@@ -18,17 +18,53 @@ const LoginStyled = styled.div`
   align-items: center;
   width: 100%;
   height: 100vh;
+  
 
   .box {
-    width: 400px;
-    background-color: skyblue;
+    width: 450px;
+    background-color: ${(props) => props.theme.bgColor};
+    color : ${(props) => props.theme.textColor};
     border-radius: 10px;
     box-shadow: 0px 0px 39px -3px rgba(0, 0, 0, 0.63);
+    position: relative;
+  }
+
+  .toggle{
+    position: absolute;
+    top: 0;
+    right: 10px;
+    width: 70px;
+    height: 30px;
+    margin-top: 15px;
+    border: ${(props) => props.theme.toggleBorder};
+    border-radius: 15px;
+    .toggleright{
+      position: absolute;
+      left: -3px;
+      top: -3px;
+      width: 45px;
+      height: 30px;
+      border-radius: 15px;
+      border: 2px solid #000;
+      transition: all ease-in 0.3s;
+      background-color: purple;
+    }
+    .toggleleft{
+      position: absolute;
+      left: 22px;
+      top: -3px;
+      width: 45px;
+      height: 30px;
+      border-radius: 15px;
+      border: 2px solid #000;
+      background-color: purple;
+      transition: all ease-in 0.3s;
+    }
   }
 
   .Tabmenu {
     font-size: 1.5rem;
-    color: black;
+    color: ${(props) => props.theme.TextColor};
     font-weight: bold;
     display: flex;
     justify-content: center;
@@ -38,19 +74,19 @@ const LoginStyled = styled.div`
     .left {
       position: absolute;
       bottom: 10px;
-      left: 105px;
+      left: 132px;
       width: 70px;
       height: 3px;
-      background-color: black;
+      background-color: ${(props) => props.theme.textColor};
       transition: all ease-in 0.3s;
     }
     .right {
       position: absolute;
       bottom: 10px;
-      left: 200px;
+      left: 225px;
       width: 90px;
       height: 3px;
-      background-color: black;
+      background-color: ${(props) => props.theme.textColor};
       transition: all ease-in 0.3s;
     }
   }
@@ -59,6 +95,7 @@ const LoginStyled = styled.div`
     padding: 1rem;
     margin-top: 30px;
     display: flex;
+ 
     flex-direction: column;
     row-gap: 20px;
     input {
@@ -100,7 +137,7 @@ const LoginStyled = styled.div`
   }
   @media screen and (max-width:500px) {
     .box{
-      width:300px;
+      width:350px;
     }
     .Tabmenu {
 
@@ -111,7 +148,7 @@ const LoginStyled = styled.div`
       width: 70px;
       height: 3px;
       background-color: black;
-      transition: all ease-in 0.3s;
+      transition: all ease-in 0.1s;
     }
     .right {
       position: absolute;
@@ -120,19 +157,22 @@ const LoginStyled = styled.div`
       width: 90px;
       height: 3px;
       background-color: black;
-      transition: all ease-in 0.3s;
+      transition: all ease-in 0.1s;
     }
+    
   }
+
+
 `;
 
-const Login = () => {
+const Login = ({ theme, setTheme }) => {
   const [tabmenu, setTabmenu] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [toggle, setToggle] = useState(false);
 
   let navigate = useNavigate();
   const auth = getAuth();
-
 
   const provider = new GoogleAuthProvider();
   const github = new GithubAuthProvider();
@@ -143,7 +183,7 @@ const Login = () => {
       alert("회원가입이 완료되었습니다 로그인해주세요.");
       setEmail("");
       setPassword("");
-      setTabmenu(true)
+      setTabmenu(true);
     } catch (err) {
       console.log(err);
     }
@@ -153,8 +193,8 @@ const Login = () => {
     try {
       await login(email, password);
       navigate("/home");
-    } catch(err) {
-      alert(err)
+    } catch (err) {
+      alert(err);
     }
   };
 
@@ -174,6 +214,17 @@ const Login = () => {
     });
   };
 
+  //Theme
+  function changeTheme() {
+    if (theme === "lightTheme") {
+      setTheme("dartTheme");
+      setToggle(true);
+    } else {
+      setTheme("lightTheme");
+
+      setToggle(false);
+    }
+  }
   return (
     <LoginStyled>
       <div className="box">
@@ -236,6 +287,13 @@ const Login = () => {
             </button>
           </div>
         )}
+        <div className="toggle">
+          {toggle ? (
+            <div onClick={changeTheme} className="toggleleft"></div>
+          ) : (
+            <div onClick={changeTheme} className="toggleright"></div>
+          )}
+        </div>
       </div>
     </LoginStyled>
   );

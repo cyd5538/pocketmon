@@ -8,11 +8,13 @@ import {
 } from "react-icons/ai";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { MdDarkMode } from "react-icons/md";
+import { BsFillBrightnessHighFill } from "react-icons/bs";
 
 const SdiebarStyle = styled.div`
   width: 230px;
   height: 100vh;
-  background-color: skyblue;
+  background-color: ${(props) => props.theme.sidebarColor};
   z-index: 999;
   color: black;
   font-weight: bold;
@@ -21,16 +23,17 @@ const SdiebarStyle = styled.div`
   left: ${(props) => (props.open ? "-165px" : "0")};
   transition: all ease-in 0.3s;
   font-size: 1.8rem;
+  
  
   .arrow {
     font-size: 2rem;
     width: 40px;
     height: 40px;
-    border: 3px solid black;
+    border: ${(props) => props.theme.toggleBorder};
     text-align: center;
     border-radius: 20px;
     top: 30px;
-    color: black;
+    color: ${(props) => props.theme.textColor};
     position: absolute;
     right: -15px;
   }
@@ -47,10 +50,11 @@ const MenuStyle = styled.div`
     justify-content: space-between;
     padding: 20px 15px;
     cursor: pointer;
+    color : ${(props) => props.theme.textColor};
   }
   div a:hover{
-    background-color: purple;
-    color: white;
+    background-color: rgba(51, 164, 82, 0.91);
+ 
   }
   @media screen and (max-width:980px) {
     div a {
@@ -59,8 +63,54 @@ const MenuStyle = styled.div`
   }
 `;
 
-const SideBar = () => {
+const Toggle = styled.div`
+  div{
+    
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 17px;
+    width: 100px;
+    height: 40px;
+    border-radius: 20px;
+    border: ${(props) => props.theme.borderColor};
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    .left{
+      position: absolute;
+      height: 40px;
+      width: 50px;
+      background-color: black;
+      left: -17px;
+      transition: all ease-in 0.3s;
+    }
+    .right{
+      position: absolute;
+      height: 40px;
+      width: 50px;
+      background-color: #F2F7F4;
+      left: 33px;
+      transition: all ease-in 0.3s;
+    }
+  }
+`
+const SideBar = ({theme, setTheme}) => {
   const [open, setOpen] = useState(false);
+  const [toggle, setToggle] = useState(false);
+
+  function changeTheme() {
+    if (theme === "lightTheme") {
+      setTheme("dartTheme");
+      setToggle(true);
+    } else {
+      setTheme("lightTheme");
+
+      setToggle(false);
+    }
+  }
+
 
   return (
     <SdiebarStyle open={!open}>
@@ -97,6 +147,20 @@ const SideBar = () => {
             </span>
           </Link>
         </div>
+
+          <Toggle>
+            <div>
+              <MdDarkMode /> 
+              <BsFillBrightnessHighFill />
+
+              {toggle ? (
+            <div onClick={changeTheme} className="left"></div>
+          ) : (
+            <div onClick={changeTheme} className="right"></div>
+          )}
+            </div>
+          </Toggle>
+ 
       </MenuStyle>
     </SdiebarStyle>
   );

@@ -10,7 +10,7 @@ const Tung = styled.div`
     text-align: center;
     margin-top: 150px;
     font-weight: bold;
-    color: #121fcf;
+    color: ${(props) => props.theme.textColor};
   }
 `;
 
@@ -29,7 +29,8 @@ const PocketmonListStyle = styled.div`
   width: 250px;
   height: 300px;
   border-radius: 30px;
-  border: 1px solid #000;
+  background-color: ${(props) => props.theme.cardColor};
+  border: ${(props) => props.theme.toggleBorder};
   padding: 10px;
   position: relative;
   box-shadow: 0px 0px 8px 1px rgba(128, 0, 0, 0.5);
@@ -74,25 +75,25 @@ const Idname = styled.div`
   display: flex;
   justify-content: space-between;
   .span {
-    border: 1px solid #000;
+    border: ${(props) => props.theme.borderColor};
     padding: 2px 10px;
     border-radius: 15px;
   }
   .span span:first-child {
     margin-right: 10px;
-    border: 1px solid #000;
+    border: ${(props) => props.theme.borderColor};
     padding: 2px 20px;
     position: relative;
     left: -11px;
     border-radius: 15px;
-    background-color: ${(props) => props.theme.main};
-    color: black;
+    background-color: ${(props) => props.theme.bgColor};
+    color: ${(props) => props.theme.textColor};
     font-weight: bold;
   }
 
   .span span:last-child {
     font-weight: bold;
-    color: black;
+    color: ${(props) => props.theme.textColor};
   }
   @media screen and (max-width: 989px) {
     .span {
@@ -114,10 +115,10 @@ const Pocketlogo = styled.span`
   position: absolute;
   right: 15px;
   bottom: 20px;
-  border: 1px solid #000;
+  border: ${(props) => props.theme.borderColor};
   padding: 2px 10px;
   border-radius: 15px;
-  color: black;
+  color: ${(props) => props.theme.textColor};
   @media screen and (max-width: 989px) {
     padding: 2px 4px;
     font-size: 0.8rem;
@@ -125,7 +126,7 @@ const Pocketlogo = styled.span`
   }
 `;
 
-const Bookmark = ({ cart, setCart }) => {
+const Bookmark = ({ cart, setCart, theme, setTheme }) => {
   const handelDelete = (id) => {
     const arr = cart.filter((item) => item.id !== id);
     setCart(arr);
@@ -140,10 +141,9 @@ const Bookmark = ({ cart, setCart }) => {
     );
   });
 
-  console.log(cartArray);
   return (
     <>
-      <Sidebar />
+      <Sidebar theme={theme} setTheme={setTheme} />
 
       <Tung>
         {cart.length === 0 ? (

@@ -8,11 +8,13 @@ const Home = ({
   pokemon,
   setPokemon,
   pokemonSearch,
-  handleClick
+  handleClick,
+  theme, 
+  setTheme
 }) => {
   return (
     <div>
-      <Sidebar />
+      <Sidebar theme={theme} setTheme={setTheme} />
       <Header />
       <Search setPokemonSearch={setPokemonSearch} />
       <Pocketmon
@@ -20,6 +22,8 @@ const Home = ({
         setPokemon={setPokemon}
         pokemonSearch={pokemonSearch}
         handleClick={handleClick}
+        theme={theme} 
+        setTheme={setTheme} 
       />
     </div>
   );

@@ -4,31 +4,32 @@ import { SiPocketcasts } from "react-icons/si";
 import { Link } from "react-router-dom";
 
 const PocketmonListStyle = styled.div`
-
   width: 250px;
   height: 300px;
   border-radius: 30px;
-  border: 1px solid #000;
+  border: ${(props) => props.theme.toggleBorder};
+  background-color: ${(props) => props.theme.cardColor};
+  color : ${(props) => props.theme.textColor};
   padding: 10px;
   position: relative;
   box-shadow: 0px 0px 8px 1px rgba(128, 0, 0, 0.5);
   /* filter: drop-shadow(-3px 0px 7px #000); */
-  .absolute{
+  .absolute {
     position: absolute;
     bottom: 22px;
     left: 20px;
-    button{
+    button {
       width: 25px;
       height: 25px;
       font-size: 1rem;
       border: none;
       border-radius: 12px;
-      background-color : purple;
+      background-color: purple;
       color: white;
       cursor: pointer;
       transition: all ease-in 0.3s;
     }
-    button:hover{
+    button:hover {
       transform: scale(1.1);
     }
   }
@@ -58,25 +59,26 @@ const PocketmonListStyle = styled.div`
 
 const Idname = styled.div`
   .span {
-    border: 1px solid #000;
+    border: ${(props) => props.theme.borderColor};
     padding: 2px 10px;
     border-radius: 15px;
+    color: ${(props) => props.theme.textColor};
   }
   .span span:first-child {
     margin-right: 10px;
-    border: 1px solid #000;
+    border: ${(props) => props.theme.borderColor};;
     padding: 2px 20px;
     position: relative;
     left: -11px;
     border-radius: 15px;
     background-color: ${(props) => props.theme.main};
-    color: black;
+    color: ${(props) => props.theme.textColor};
     font-weight: bold;
   }
 
   .span span:last-child {
     font-weight: bold;
-    color: black;
+    color: ${(props) => props.theme.textColor};
   }
   @media screen and (max-width: 989px) {
     .span {
@@ -98,10 +100,10 @@ const Pocketlogo = styled.span`
   position: absolute;
   right: 15px;
   bottom: 20px;
-  border: 1px solid #000;
+  border: ${(props) => props.theme.borderColor};
   padding: 2px 10px;
   border-radius: 15px;
-  color: black;
+  color: ${(props) => props.theme.textColor};
   @media screen and (max-width: 989px) {
     padding: 2px 4px;
     font-size: 0.8rem;
@@ -109,7 +111,7 @@ const Pocketlogo = styled.span`
   }
 `;
 
-const PocketmonList = ({ data, handleClick }) => {
+const PocketmonList = ({ data, handleClick, theme, setTheme }) => {
   const color = [
     "f00",
     "ff8c00",
@@ -124,18 +126,17 @@ const PocketmonList = ({ data, handleClick }) => {
   const getRandomColor = function (length) {
     return parseInt(Math.random() * color.length);
   };
-  const theme = {
+  const themes = {
     main: `#${color[getRandomColor()]}`,
   };
   return (
     <>
       <PocketmonListStyle>
-        <Idname theme={theme}>
+        <Idname theme={themes}>
           <span className="span">
             <span>{data.id}</span>
             <span>{data.name}</span>
           </span>
-      
         </Idname>
         <Link to={`/${data.name}`}>
           <div className="image">

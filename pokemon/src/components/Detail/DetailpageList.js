@@ -7,7 +7,7 @@ const DetailpageListStyle = styled.div`
   width: 100%;
   padding-top : 3rem;
   height: 100vh;
-  background-color: gray;
+  background-color: ${(props) => props.theme.bgColor};
   padding-left: 1rem;
   padding-right: 1rem;
   font-size: 1.5rem;
@@ -31,7 +31,7 @@ const DetailpageListStyle = styled.div`
       max-width: 200px;
       width: 100%;
     }
-    .right {
+    .right2 {
       padding: 1rem;
       width: 400px;
     }
@@ -43,7 +43,7 @@ const DetailpageListStyle = styled.div`
       max-width: 200px;
       width: 100%;
     }
-    .right {
+    .right2 {
       padding: 1rem;
       width: 300px;
     }
@@ -57,7 +57,7 @@ const Title = styled.div`
 
   div:first-child {
     font-size: 2rem;
-    color: #fff;
+    color: ${(props) => props.theme.textColor};
     text-shadow: 8px 5px 10px #ffffff;
   }
 
@@ -84,9 +84,16 @@ const Ability = styled.div`
   display: flex;
   margin-top: 30px;
   column-gap: 20px;
-  div {
-    background-color: skyblue;
-    color: black;
+  div:first-child {
+    background-color: purple;
+    color: white;
+    border: 1px solid #000;
+    padding: 5px 15px 5px 15px;
+    border-radius: 20px;
+  }
+  div:last-child{
+    background-color: red;
+    color: white;
     border: 1px solid #000;
     padding: 5px 15px 5px 15px;
     border-radius: 20px;
@@ -103,7 +110,7 @@ const Stats = styled.div`
   }
 `;
 
-const DetailpageList = ({ pocket }) => {
+const DetailpageList = ({ pocket, theme, setTheme  }) => {
 
   const [color, setColor] = useState("");
 
@@ -170,8 +177,8 @@ const DetailpageList = ({ pocket }) => {
 
   return (
     <DetailpageListStyle>
-      <div><img src={pocket?.sprites.other.home.front_default} alt={pocket?.name} /></div>
-      <div className="right">
+     
+      <div className="right2">
         <Title>
           <div>{pocket?.name}</div>
         </Title>
@@ -194,6 +201,7 @@ const DetailpageList = ({ pocket }) => {
           <DetailpageListStats pocket={pocket} />
         </Stats>
       </div>
+      <div><img src={pocket?.sprites.other.home.front_default} alt={pocket?.name} /></div>
     </DetailpageListStyle>
   );
 };
