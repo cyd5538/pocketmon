@@ -11,6 +11,7 @@ const HomeButtonStyle = styled.div`
 `;
 
 const HomeButton = ({ pokemon, setPage }) => {
+
   return (
     <HomeButtonStyle>
       <Stack spacing={2}>

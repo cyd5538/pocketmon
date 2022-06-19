@@ -66,7 +66,7 @@ const Idname = styled.div`
   }
   .span span:first-child {
     margin-right: 10px;
-    border: ${(props) => props.theme.borderColor};;
+    border: ${(props) => props.theme.borderColor};
     padding: 2px 20px;
     position: relative;
     left: -11px;

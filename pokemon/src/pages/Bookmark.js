@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { SiPocketcasts } from "react-icons/si";
 import { Link } from "react-router-dom";
@@ -152,7 +152,7 @@ const Bookmark = ({ cart, setCart, theme, setTheme }) => {
           <Display>
             {cartArray.map((a) => (
               <>
-                <PocketmonListStyle>
+                <PocketmonListStyle >
                   <Idname>
                     <span className="span">
                       <span>{a.id}</span>
@@ -164,7 +164,7 @@ const Bookmark = ({ cart, setCart, theme, setTheme }) => {
                     <div className="image">
                       <img
                         src={a.sprites.other.dream_world.front_default}
-                        alt=""
+                        alt={a.sprites.other.dream_world.front_default}
                       />
                     </div>
                   </Link>

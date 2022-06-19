@@ -101,7 +101,7 @@ const Profile = ({theme, setTheme}) => {
         </Stack>
         <label
           className="upload action-button shadow animate blue"
-          for="input-file"
+          htmlFor="input-file"
         >
           사진 선택 
         </label>
