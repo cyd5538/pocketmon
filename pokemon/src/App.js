@@ -7,7 +7,7 @@ import Profile from "./pages/Profile";
 import Bookmark from "./pages/Bookmark";
 import Login from "./pages/Login";
 import { ThemeProvider } from "styled-components";
-import { lightTheme, dartTheme, themes } from "./styles/Theme";
+import { themes } from "./styles/Theme";
 
 function App() {
   const [pokemonSearch, setPokemonSearch] = useState("");
